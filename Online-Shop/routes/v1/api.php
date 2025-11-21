@@ -19,6 +19,7 @@ Route::get('/product_type/{product_types}/show',[\App\Http\Controllers\ProductTy
 Route::put('/product_type/{product_types}/update',[\App\Http\Controllers\ProductTypesController::class,'update']);
 Route::delete('/product_type/{product_types}/delete',[\App\Http\Controllers\ProductTypesController::class,'delete']);
 
+msdnflsdfsaofmds
 
 Route::post('/product/store',[\App\Http\Controllers\ProductController::class,'store']);
 Route::get('/product/{product}/show',[\App\Http\Controllers\ProductController::class,'show']);
