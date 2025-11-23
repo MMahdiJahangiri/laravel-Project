@@ -48,11 +48,15 @@ Route::get('/wishlist/{Wishlist}/show',[\App\Http\Controllers\WishlistController
 Route::put('/wishlist/{Wishlist}/update',[\App\Http\Controllers\WishlistController::class,'update']);
 Route::delete('/wishlist/{Wishlist}/delete',[\App\Http\Controllers\WishlistController::class,'delete']);
 
+Route::post('/user/store',[\App\Http\Controllers\UserController::class,'store']);
+
+
 Route::post('/admin/store',[\App\Http\Controllers\AdminController::class,'store']);
 
-/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-
+Route::middleware('auth:sanctum')->group( function () {
+    Route::get('/user/{user}/show',[\App\Http\Controllers\UserController::class,'show']);
 });
- */
+
+
+
 
