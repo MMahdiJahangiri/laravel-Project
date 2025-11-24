@@ -2,55 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\storeProductRequest;
-use App\Http\Resources\storeProductResource;
+use App\Http\Requests\productReq;
+use App\Http\Resources\productRes;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    //
-    public function store(storeProductRequest $storeProductRequest)
+    // ایجاد محصول
+    public function store(productReq $productRequest)
     {
-        $Product =Product::create($storeProductRequest->all());
-        return response()->json(
-            [
-                "Message" => "Product Create",
-                "data" => new  storeProductResource($Product)
-            ],200
-        );
+        $Product = Product::create($productRequest->all());
+        return response()->json([
+            "message" => "Product created successfully!",
+            "data" => new productRes($Product)
+        ], 201); // 201 = Created
     }
 
+    // نمایش یک محصول
     public function show(Product $Product)
     {
         return response()->json([
-           "message" => "اطلاعات با موفقیت دریافت شد!",
-           "data" => $Product
-        ]);
+            "message" => "Product retrieved successfully!",
+            "data" => new productRes($Product)
+        ], 200);
     }
 
-    public function update(Product $Product,Request $request)
+    // بروزرسانی محصول
+    public function update(Product $Product, productReq $request)
     {
-        $Product->update(request()->all());
-        $Product = Product::find($Product->id);
-         return response()->json([
-             "message"=>"اطلاعات محصول مورد نظر با موفقیت بروزرسانی شد !",
-             "data"=>$Product
-         ],200
-         );
+        $Product->update($request->validated());
+        $Product->refresh(); // داده تازه بعد از آپدیت
+
+        return response()->json([
+            "message" => "Product updated successfully!",
+            "data" => new productRes($Product)
+        ], 200);
     }
 
+    // حذف محصول
     public function delete(Product $Product)
     {
         $Product->delete();
+
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت حذف شد !"
-        ],200
-        );
+            "message" => "Product deleted successfully!"
+        ], 200);
     }
 }
-
-
-
-
-

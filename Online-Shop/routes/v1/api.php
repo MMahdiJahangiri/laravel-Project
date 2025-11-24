@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/product_type/store',[\App\Http\Controllers\ProductTypesController::class,'store']);
-Route::get('/product_type/{product_types}/show',[\App\Http\Controllers\ProductTypesController::class,'show']);
-Route::put('/product_type/{product_types}/update',[\App\Http\Controllers\ProductTypesController::class,'update']);
-Route::delete('/product_type/{product_types}/delete',[\App\Http\Controllers\ProductTypesController::class,'delete']);
+Route::post('/product_type/store',[\App\Http\Controllers\ProductTypeController::class,'store']);
+Route::get('/product_type/{product_types}/show',[\App\Http\Controllers\ProductTypeController::class,'show']);
+Route::put('/product_type/{product_types}/update',[\App\Http\Controllers\ProductTypeController::class,'update']);
+Route::delete('/product_type/{product_types}/delete',[\App\Http\Controllers\ProductTypeController::class,'delete']);
 
-msdnflsdfsaofmds
 
 Route::post('/product/store',[\App\Http\Controllers\ProductController::class,'store']);
 Route::get('/product/{product}/show',[\App\Http\Controllers\ProductController::class,'show']);
@@ -27,10 +26,10 @@ Route::put('/product/{product}/update',[\App\Http\Controllers\ProductController:
 Route::delete('/product/{product}/delete',[\App\Http\Controllers\ProductController::class,'delete']);
 
 
-Route::post('/product_video/store',[\App\Http\Controllers\ProductVideosController::class,'store']);
-Route::get('/product_video/{product_videos}/show',[\App\Http\Controllers\ProductVideosController::class,'show']);
-Route::put('/product_video/{product_videos}/update',[\App\Http\Controllers\ProductVideosController::class,'update']);
-Route::delete('/product_video/{product_videos}/delete',[\App\Http\Controllers\ProductVideosController::class,'delete']);
+Route::post('/product_video/store',[\App\Http\Controllers\ProductVideoController::class,'store']);
+Route::get('/product_video/{product_videos}/show',[\App\Http\Controllers\ProductVideoController::class,'show']);
+Route::put('/product_video/{product_videos}/update',[\App\Http\Controllers\ProductVideoController::class,'update']);
+Route::delete('/product_video/{product_videos}/delete',[\App\Http\Controllers\ProductVideoController::class,'delete']);
 
 
  Route::post('/product_photo/store',[\App\Http\Controllers\ProductPhotoController::class,'store']);
@@ -48,7 +47,7 @@ Route::get('/wishlist/{Wishlist}/show',[\App\Http\Controllers\WishlistController
 Route::put('/wishlist/{Wishlist}/update',[\App\Http\Controllers\WishlistController::class,'update']);
 Route::delete('/wishlist/{Wishlist}/delete',[\App\Http\Controllers\WishlistController::class,'delete']);
 
-Route::post('/admin/store',[\App\Http\Controllers\AdminController::class,'store']);
+
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

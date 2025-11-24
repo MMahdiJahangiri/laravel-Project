@@ -2,49 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\attribute;
-use App\Models\Product;
+use App\Http\Requests\attributeReq;
+use App\Http\Resources\attributeRes;
+use App\Http\Resources\userRes;
+use App\Models\Attribute;
 use Illuminate\Http\Request;
 
 class AttributeController extends Controller
 {
-    //
-    public function store(Request $request)
+    // ایجاد Attribute
+    public function store(attributeReq $request)
     {
-        $attribute =attribute::create($request->all());
-        return response()->json(
-            [
-                "Message" => "Product Create",
-                "data" => $attribute
-            ],200
-        );
+        $attribute = Attribute::create($request->all());
+
+        return response()->json([
+            "message" => "Attribute created successfully!",
+            "data" => new attributeRes($attribute)
+        ], 201);
     }
 
-    public function show(attribute $attribute)
+    // نمایش یک Attribute
+    public function show(Attribute $attribute)
     {
         return response()->json([
-            "message" => "اطلاعات با موفقیت دریافت شد!",
-            "data" => $attribute
-        ]);
+            "message" => "Attribute retrieved successfully!",
+            "data" => new attributeRes($attribute)
+        ], 200);
     }
 
-    public function update(attribute $attribute,Request $request)
+    // بروزرسانی Attribute
+    public function update(Attribute $attribute, attributeReq $request)
     {
-        $attribute->update(request()->all());
-        $attribute = attribute::find($attribute->id);
+        $attribute->update($request->validated());
+        $attribute->refresh();
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت بروزرسانی شد !",
-            "data"=>$attribute
-        ],200
-        );
+            "message" => "Attribute updated successfully!",
+            "data" => new attributeRes($attribute)
+        ], 200);
     }
 
-    public function delete(attribute $attribute)
+    // حذف Attribute
+    public function delete(Attribute $attribute)
     {
         $attribute->delete();
+
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت حذف شد !"
-        ],200
-        );
+            "message" => "Attribute deleted successfully!"
+        ], 200);
     }
 }

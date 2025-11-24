@@ -2,48 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Http\Requests\productVideoReq;
 use App\Models\ProductVideo;
 use Illuminate\Http\Request;
 
 class ProductVideoController extends Controller
 {
-    //
-    public function store(Request $request)
+    // ایجاد ویدیو محصول
+    public function store(productVideoReq $productVideoReq)
     {
-        $ProductVideo= ProductVideo::create($request->all());
-        return response()->json(
-            [
-                "Message" => "Product Create",
-                "data" => $ProductVideo
-            ],200
-        );
+        $ProductVideo = ProductVideo::create($productVideoReq->all());
+
+        return response()->json([
+            "message" => "Product video created successfully!",
+            "data" => $ProductVideo
+        ], 201); // 201 = Created
     }
+
+    // نمایش یک ویدیو محصول
     public function show(ProductVideo $ProductVideo)
     {
         return response()->json([
-            "message" => "اطلاعات با موفقیت دریافت شد!",
+            "message" => "Product video retrieved successfully!",
             "data" => $ProductVideo
-        ]);
+        ], 200);
     }
 
-    public function update(ProductVideo $ProductVideo,Request $request)
+    // بروزرسانی ویدیو محصول
+    public function update(ProductVideo $ProductVideo, productVideoReq $productVideoReq)
     {
-        $ProductVideo->update(request()->all());
-        $ProductVideo = ProductVideo::find($ProductVideo->id);
+        $ProductVideo->update($productVideoReq->all());
+        $ProductVideo->refresh(); // داده تازه بعد از آپدیت
+
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت بروزرسانی شد !",
-            "data"=>$ProductVideo
-        ],200
-        );
+            "message" => "Product video updated successfully!",
+            "data" => $ProductVideo
+        ], 200);
     }
 
+    // حذف ویدیو محصول
     public function delete(ProductVideo $ProductVideo)
     {
         $ProductVideo->delete();
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت حذف شد !"
-        ],200
-        );
+            "message" => "Product video deleted successfully!"
+
+        ], 200);
     }
 }

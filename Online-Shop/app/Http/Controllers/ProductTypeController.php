@@ -2,48 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Http\Requests\productReq;
+use App\Http\Requests\productTypeReq;
+use App\Http\Resources\productRes;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 
 class ProductTypeController extends Controller
 {
-    //
-    public function store(Request $request)
+    // ایجاد نوع محصول
+    public function store(productTypeReq $productTypeReq)
     {
-        $ProductType =ProductType::create($request->all());
-        return response()->json(
-            [
-                "Message" => "Product Create",
-                "data" => $ProductType
-            ],200
-        );
+        $ProductType = ProductType::create($productTypeReq->all());
+
+        return response()->json([
+            "message" => "Product type created successfully!",
+            "data" => new productRes($ProductType)
+        ], 201); // 201 = Created
     }
+
+    // نمایش یک نوع محصول
     public function show(ProductType $ProductType)
     {
         return response()->json([
-            "message" => "اطلاعات با موفقیت دریافت شد!",
-            "data" => $ProductType
-        ]);
+            "message" => "Product type retrieved successfully!",
+            "data" => new productRes($ProductType)
+        ], 200);
     }
 
-    public function update(ProductType $ProductType,Request $request)
+    // بروزرسانی نوع محصول
+    public function update(ProductType $ProductType, productTypeReq $request)
     {
-        $ProductType->update(request()->all());
-        $ProductType = ProductType::find($ProductType->id);
+        $ProductType->update($request->validated());
+        $ProductType->refresh(); // داده تازه بعد از آپدیت
+
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت بروزرسانی شد !",
-            "data"=>$ProductType
-        ],200
-        );
+            "message" => "Product type updated successfully!",
+            "data" => new productRes($ProductType)
+        ], 200);
     }
 
+    // حذف نوع محصول
     public function delete(ProductType $ProductType)
     {
         $ProductType->delete();
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت حذف شد !"
-        ],200
-        );
+            "message" => "Product type deleted successfully!"
+        ], 200);
     }
 }
