@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\productVideoReq;
+use App\Http\Resources\productVideoRes;
 use App\Models\ProductVideo;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ProductVideoController extends Controller
 
         return response()->json([
             "message" => "Product video created successfully!",
-            "data" => $ProductVideo
+            "data" => new productVideoRes($ProductVideo)
         ], 201); // 201 = Created
     }
 
@@ -24,7 +25,7 @@ class ProductVideoController extends Controller
     {
         return response()->json([
             "message" => "Product video retrieved successfully!",
-            "data" => $ProductVideo
+            "data" => new productVideoRes($ProductVideo)
         ], 200);
     }
 
@@ -36,7 +37,7 @@ class ProductVideoController extends Controller
 
         return response()->json([
             "message" => "Product video updated successfully!",
-            "data" => $ProductVideo
+            "data" => new productVideoRes($ProductVideo)
         ], 200);
     }
 

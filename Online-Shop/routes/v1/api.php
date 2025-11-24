@@ -34,10 +34,10 @@ Route::put('/product/{product}/update', [ProductController::class, 'update']);
 Route::delete('/product/{product}/delete', [ProductController::class, 'delete']);
 
 
-Route::post('/product_video/store',[\App\Http\Controllers\ProductVideoController::class,'store']);
-Route::get('/product_video/{product_videos}/show',[\App\Http\Controllers\ProductVideoController::class,'show']);
-Route::put('/product_video/{product_videos}/update',[\App\Http\Controllers\ProductVideoController::class,'update']);
-Route::delete('/product_video/{product_videos}/delete',[\App\Http\Controllers\ProductVideoController::class,'delete']);
+Route::post('/product_video/store',[ProductVideoController::class,'store']);
+Route::get('/product_video/{product_videos}/show',[ProductVideoController::class,'show']);
+Route::put('/product_video/{product_videos}/update',[ProductVideoController::class,'update']);
+Route::delete('/product_video/{product_videos}/delete',[ProductVideoController::class,'delete']);
 
 
 Route::post('/product_photo/store', [ProductPhotoController::class, 'store']);
@@ -55,6 +55,16 @@ Route::get('/wishlist/{Wishlist}/show', [WishlistController::class, 'show']);
 Route::put('/wishlist/{Wishlist}/update', [WishlistController::class, 'update']);
 Route::delete('/wishlist/{Wishlist}/delete', [WishlistController::class, 'delete']);
 
+Route::post('/user/store', [UserController::class, 'store']);
+Route::middleware('auth:sanctum')->group(function ()
+{
+    Route::get('/user/show', [UserController::class, 'show']);
+    Route::put('/user/update', [UserController::class, 'update']);
+    Route::delete('/user/delete', [UserController::class, 'delete']);
+}
+);
+
+
 Route::post('/blog/store', [App\Http\Controllers\BlogController::class, 'store']);
 Route::put('/blog/{blog}/update', [App\Http\Controllers\BlogController::class, 'update']);
 Route::delete('/blog/{blog}/delete', [App\Http\Controllers\BlogController::class, 'delete']);
@@ -65,14 +75,8 @@ Route::delete('/blog_like/{blog_like}/delete', [App\Http\Controllers\BlogLikeCon
 Route::get('/blog_like/{blog_like}/show', [App\Http\Controllers\BlogLikeController::class, 'show']);
 Route::put('/blog_like/{blog_like}/update', [App\Http\Controllers\BlogLikeController::class, 'update']);
 
-Route::post('/user/store', [UserController::class, 'store']);
-
 
 Route::post('/admin/store', [AdminController::class, 'store']);
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user/{user}/show', [UserController::class, 'show']);
-});
 
 
 

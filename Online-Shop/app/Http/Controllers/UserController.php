@@ -9,35 +9,52 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    // ثبت کاربر جدید (عمومی)
     public function store(userReq $userReq)
     {
-        $token = $userReq->createToken('auth_token')->plainTextToken;
         $user = User::create($userReq->all());
+        $token = $user->createToken('auth_token')->plainTextToken;
+
         return response()->json([
             'message' => 'User created successfully',
             'token' => $token,
             'data' => new userRes($user)
-        ],201);
-
+        ], 201);
     }
-    public function show(User $user){
+
+    // نمایش اطلاعات کاربر جاری (از توکن)
+    public function show(Request $request)
+    {
+        $user = $request->user(); // کاربر جاری از توکن
+
         return response()->json([
             'message' => 'User retrieved successfully',
             'data' => new userRes($user)
-        ],200);
+        ], 200);
     }
 
-    public function update(Request $request)
+    // آپدیت اطلاعات کاربر جاری
+    public function update(userReq $userReq)
     {
-        $user = $request->user();  // گرفتن کاربر از توکن Sanctum
 
-        $user->update($request->all());
+        $user = $userReq->user(); // کاربر از توکن
+        $user->update($userReq->all());
         $user->refresh();
 
         return response()->json([
             'message' => 'User updated successfully',
             'data' => new userRes($user)
-        ]);
+        ], 200);
     }
 
+    // حذف کاربر جاری
+    public function delete(Request $request)
+    {
+        $user = $request->user(); // کاربر از توکن
+        $user->delete();
+
+        return response()->json([
+            'message' => 'User deleted successfully',
+        ], 200);
+    }
 }

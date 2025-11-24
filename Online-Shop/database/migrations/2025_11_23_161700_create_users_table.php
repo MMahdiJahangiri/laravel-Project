@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('Email');
             $table->string('Password');
             $table->string('Phone');
-            $table->string('Avatar');
-            $table->boolean('is_admin')->default(false);
+            $table->string('Avatar')->nullable();
+            $table->string('is_admin')->nullable('false');
             $table->timestamps();
         });
     }

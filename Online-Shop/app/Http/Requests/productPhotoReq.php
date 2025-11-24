@@ -23,7 +23,7 @@ class productPhotoReq extends FormRequest
     {
         return [
             'product_id' => ['required','integer'],
-            'image_path' => ['required','image','mimes:jpeg,png,jpg,gif,svg'],
+            'image_path' => ['nullable','image','mimes:jpeg,png,jpg,gif,svg'],
         ];
     }
 }
