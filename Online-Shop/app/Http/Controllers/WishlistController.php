@@ -2,48 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\storeWishlistRequest;
+use App\Http\Requests\wishlistReq;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
 class WishlistController extends Controller
 {
-    //
-    public function store(storeWishlistRequest $storeWishlistRequest)
+    // ایجاد Wishlist
+    public function store(wishlistReq $wishlistReq)
     {
-        $Wishlist=Wishlist::create($storeWishlistRequest->all());
-        return response()->json(
-            [
-                "Message" => "Product Create",
-                "data" => $Wishlist
-            ],200
-        );
+        $Wishlist = Wishlist::create($wishlistReq->all());
+
+        return response()->json([
+            "message" => "Wishlist created successfully!",
+            "data" => $Wishlist
+        ], 201); // 201 = Created
     }
+
+    // نمایش یک Wishlist
     public function show(Wishlist $Wishlist)
     {
         return response()->json([
-            "message" => "اطلاعات با موفقیت دریافت شد!",
+            "message" => "Wishlist retrieved successfully!",
             "data" => $Wishlist
-        ]);
+        ], 200);
     }
 
-    public function update(Wishlist $Wishlist,Request $request)
+    // بروزرسانی Wishlist
+    public function update(Wishlist $Wishlist, wishlistReq $wishlistReq)
     {
-        $Wishlist->update(request()->all());
-        $Wishlist = Wishlist::find($Wishlist->id);
+        $Wishlist->update($wishlistReq->all());
+        $Wishlist->refresh(); // داده تازه بعد از آپدیت
+
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت بروزرسانی شد !",
-            "data"=>$Wishlist
-        ],200
-        );
+            "message" => "Wishlist updated successfully!",
+            "data" => $Wishlist
+        ], 200);
     }
 
+    // حذف Wishlist
     public function delete(Wishlist $Wishlist)
     {
         $Wishlist->delete();
+
         return response()->json([
-            "message"=>"اطلاعات محصول مورد نظر با موفقیت حذف شد !"
-        ],200
-        );
+            "message" => "Wishlist deleted successfully!"
+        ], 200);
     }
 }

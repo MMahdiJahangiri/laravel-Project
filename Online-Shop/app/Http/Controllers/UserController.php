@@ -2,35 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\userStoreReq;
-use App\Http\Resources\userStoreRes;
-use App\Models\Product;
+use App\Http\Requests\userReq;
+use App\Http\Resources\userRes;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function store(userStoreReq $userStoreReq)
+    public function store(userReq $userReq)
     {
-        $User=User::create($userStoreReq->all());
-        $token = $User->createToken('auth_token')->plainTextToken;
+        $token = $userReq->createToken('auth_token')->plainTextToken;
+        $user = User::create($userReq->all());
         return response()->json([
-            'message' => 'اطلاعات کاربری با موفقیت ثبت شد',
+            'message' => 'User created successfully',
             'token' => $token,
-            'data'=> new userStoreRes($User)
-        ],200);
-    }
+            'data' => new userRes($user)
+        ],201);
 
-    public function show(user $user)
-    {
+    }
+    public function show(User $user){
         return response()->json([
-            'message' => 'اطلاعات کاربری با موفقیت ثبت شد',
-            'data'=> new userStoreRes($user)
+            'message' => 'User retrieved successfully',
+            'data' => new userRes($user)
         ],200);
     }
 
-    public function update()
+    public function update(Request $request)
     {
+        $user = $request->user();  // گرفتن کاربر از توکن Sanctum
 
+        $user->update($request->all());
+        $user->refresh();
+
+        return response()->json([
+            'message' => 'User updated successfully',
+            'data' => new userRes($user)
+        ]);
     }
+
 }

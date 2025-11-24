@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class storeProductResource extends JsonResource
+class wishlistRes extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,8 +14,6 @@ class storeProductResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'title' => $this->title
-        ];
+        return parent::toArray($request);
     }
 }

@@ -20,10 +20,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/product_type/store', [App\Http\Controllers\ProductTypeController::class, 'store']);
-Route::get('/product_type/{product_types}/show', [App\Http\Controllers\ProductTypeController::class, 'show']);
-Route::put('/product_type/{product_types}/update', [App\Http\Controllers\ProductTypeController::class, 'update']);
-Route::delete('/product_type/{product_types}/delete', [ProductTypeController::class, 'delete']);
+
+Route::post('/product_type/store',[\App\Http\Controllers\ProductTypeController::class,'store']);
+Route::get('/product_type/{product_types}/show',[\App\Http\Controllers\ProductTypeController::class,'show']);
+Route::put('/product_type/{product_types}/update',[\App\Http\Controllers\ProductTypeController::class,'update']);
+Route::delete('/product_type/{product_types}/delete',[\App\Http\Controllers\ProductTypeController::class,'delete']);
+
 
 
 Route::post('/product/store', [ProductController::class, 'store']);
@@ -32,10 +34,10 @@ Route::put('/product/{product}/update', [ProductController::class, 'update']);
 Route::delete('/product/{product}/delete', [ProductController::class, 'delete']);
 
 
-Route::post('/product_video/store', [ProductVideoController::class, 'store']);
-Route::get('/product_video/{product_videos}/show', [ProductVideoController::class, 'show']);
-Route::put('/product_video/{product_videos}/update', [ProductVideoController::class, 'update']);
-Route::delete('/product_video/{product_videos}/delete', [ProductVideoController::class, 'delete']);
+Route::post('/product_video/store',[\App\Http\Controllers\ProductVideoController::class,'store']);
+Route::get('/product_video/{product_videos}/show',[\App\Http\Controllers\ProductVideoController::class,'show']);
+Route::put('/product_video/{product_videos}/update',[\App\Http\Controllers\ProductVideoController::class,'update']);
+Route::delete('/product_video/{product_videos}/delete',[\App\Http\Controllers\ProductVideoController::class,'delete']);
 
 
 Route::post('/product_photo/store', [ProductPhotoController::class, 'store']);
