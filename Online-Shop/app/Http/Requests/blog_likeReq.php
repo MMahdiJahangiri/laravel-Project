@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class blogReq extends FormRequest
+class blog_likeReq extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class blogReq extends FormRequest
     {
         return [
             //
-            'titr' => 'required | string',
-            'author' => 'required | string',
-            'text' => 'required | string',
+            "blog_id" => "required",
+            "user_id" => "required",
         ];
     }
 }
