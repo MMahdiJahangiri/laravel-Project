@@ -22,7 +22,8 @@ class productVideoReq extends FormRequest
     public function rules(): array
     {
         return [
-
+            'product_id' => ['required','integer'],
+            'video_path' => ['nullable','file','mimetypes:video/mp4,video/avi','max:5000'],
         ];
     }
 }

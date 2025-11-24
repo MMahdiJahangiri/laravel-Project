@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\productReq;
 use App\Http\Requests\productTypeReq;
 use App\Http\Resources\productRes;
+use App\Http\Resources\productTypeRes;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class ProductTypeController extends Controller
 
         return response()->json([
             "message" => "Product type created successfully!",
-            "data" => new productRes($ProductType)
+            "data" => new productTypeRes($ProductType)
         ], 201); // 201 = Created
     }
 
@@ -26,7 +27,7 @@ class ProductTypeController extends Controller
     {
         return response()->json([
             "message" => "Product type retrieved successfully!",
-            "data" => new productRes($ProductType)
+            "data" => new productTypeRes($ProductType)
         ], 200);
     }
 
@@ -38,7 +39,7 @@ class ProductTypeController extends Controller
 
         return response()->json([
             "message" => "Product type updated successfully!",
-            "data" => new productRes($ProductType)
+            "data" => new ProductTypeRes($ProductType)
         ], 200);
     }
 

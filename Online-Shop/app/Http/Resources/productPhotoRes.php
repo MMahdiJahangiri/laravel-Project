@@ -14,6 +14,9 @@ class productPhotoRes extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'product_id'=>$this->product_id,
+            'image_path'=>$this->image_path
+        ];
     }
 }

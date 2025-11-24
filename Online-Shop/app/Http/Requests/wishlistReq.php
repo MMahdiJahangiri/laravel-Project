@@ -25,7 +25,7 @@ class wishlistReq extends FormRequest
             //
             'product_id' => ['required','integer'],
             'attribute_id' => ['required','integer'],
-            'value' => ['required'],
+            'value' => ['required','integer','min:0'],
 
         ];
     }
