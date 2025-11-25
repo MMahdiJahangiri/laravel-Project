@@ -30,9 +30,9 @@ class ProductPhotoController extends Controller
             "data" => new productPhotoRes($Product_photo)
         ]);
     }
-    public function update(Product_photo $Product_photo,Request $request)
+    public function update(Product_photo $Product_photo,productPhotoReq $productPhotoReq)
     {
-        $Product_photo->update($request->validated());
+        $Product_photo->update($productPhotoReq->validated());
         $Product_photo->refresh();
         return response()->json([
             "message" => "Product photo updated successfully!",

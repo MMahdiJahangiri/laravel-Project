@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\ProductCategorieController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductPhotoController;
 use App\Http\Controllers\ProductTypeController;
@@ -61,8 +62,13 @@ Route::middleware('auth:sanctum')->group(function ()
     Route::get('/user/show', [UserController::class, 'show']);
     Route::put('/user/update', [UserController::class, 'update']);
     Route::delete('/user/delete', [UserController::class, 'delete']);
-}
-);
+});
+
+Route::post('/productCategorie/store', [ProductCategorieController::class, 'store']);
+Route::get('/productCategorie/{product_categorie}/show', [ProductCategorieController::class, 'show']);
+Route::put('/productCategorie/{product_categorie}/update', [ProductCategorieController::class, 'update']);
+Route::delete('/productCategorie/{product_categorie}/delete', [ProductCategorieController::class, 'delete']);
+
 
 
 Route::post('/blog/store', [App\Http\Controllers\BlogController::class, 'store']);
