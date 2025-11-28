@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\ProductAttributeController;
 use App\Http\Controllers\ProductCategorieController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductPhotoController;
@@ -70,11 +71,28 @@ Route::put('/productCategorie/{product_categorie}/update', [ProductCategorieCont
 Route::delete('/productCategorie/{product_categorie}/delete', [ProductCategorieController::class, 'delete']);
 
 
+Route::post('/productAttribute/store', [ProductAttributeController::class, 'store']);
+Route::get('/productAttribute/{product_attribute}/show', [ProductAttributeController::class, 'show']);
+Route::put('/productAttribute/{product_attribute}/update', [ProductAttributeController::class, 'update']);
+Route::delete('/productAttribute/{product_attribute}/delete', [ProductAttributeController::class, 'delete']);
+
+
+Route::post('/cart/store', [\App\Http\Controllers\CartController::class, 'store']);
+Route::get('/cart/{cart}/show', [\App\Http\Controllers\CartController::class, 'show']);
+Route::put('/cart/{cart}/update', [\App\Http\Controllers\CartController::class, 'update']);
+Route::delete('/cart/{cart}/delete', [\App\Http\Controllers\CartController::class, 'delete']);
+
+Route::post('/cartproduct/store', [\App\Http\Controllers\CartProductController::class, 'store']);
+Route::get('/cartproduct/{cartProduct}/show', [\App\Http\Controllers\CartProductController::class, 'show']);
+Route::put('/cartproduct/{cartpProduct}/update', [\App\Http\Controllers\CartProductController::class, 'update']);
+Route::delete('/cartproduct/{cartProduct}/delete', [\App\Http\Controllers\CartProductController::class, 'delete']);
+
 
 Route::post('/blog/store', [App\Http\Controllers\BlogController::class, 'store']);
 Route::put('/blog/{blog}/update', [App\Http\Controllers\BlogController::class, 'update']);
 Route::delete('/blog/{blog}/delete', [App\Http\Controllers\BlogController::class, 'delete']);
 Route::get('/blog/{blog}/show', [App\Http\Controllers\BlogController::class, 'show']);
+
 
 Route::post('/blog_like/store', [App\Http\Controllers\BlogLikeController::class, 'store']);
 Route::delete('/blog_like/{blog_like}/delete', [App\Http\Controllers\BlogLikeController::class, 'delete']);
