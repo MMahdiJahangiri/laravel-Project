@@ -34,8 +34,12 @@ class ProductPhotoController extends Controller
 
     public function update(Product_photo $Product_photo, productPhotoReq $productPhotoReq)
     {
-        $Product_photo->update($productPhotoReq->validated());
-        $Product_photo->refresh();
+        $Product_photo->fill($productPhotoReq->validated());
+        if ($Product_photo->isDirty('image_path')) {
+            $photoUrl = Storage::putFile('/product', $productPhotoReq->image_path);
+            $Product_photo->update(['image_path' => $photoUrl]);
+        }
+
         return response()->json([
             "message" => "Product photo updated successfully!",
             "data" => new productPhotoRes($Product_photo)
