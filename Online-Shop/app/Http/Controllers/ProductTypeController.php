@@ -40,7 +40,7 @@ class ProductTypeController extends Controller
         return response()->json([
             "message" => "Product type updated successfully!",
             "data" => new ProductTypeRes($ProductType)
-        ], 200);
+        ],200);
     }
 
     // حذف نوع محصول

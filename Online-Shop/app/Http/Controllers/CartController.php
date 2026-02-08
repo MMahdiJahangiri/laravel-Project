@@ -38,6 +38,7 @@ class CartController extends Controller
 
     public function delete(Cart $cart)
     {
+        $cart->delete();
         return response()->json([
             'message' => 'Cart deleted successfully',
         ],200);

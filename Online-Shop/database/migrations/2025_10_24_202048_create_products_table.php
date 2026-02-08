@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('stock');
             $table->string('category_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
