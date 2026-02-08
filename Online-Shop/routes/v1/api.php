@@ -100,6 +100,12 @@ Route::get('/blog_like/{blog_like}/show', [App\Http\Controllers\BlogLikeControll
 Route::put('/blog_like/{blog_like}/update', [App\Http\Controllers\BlogLikeController::class, 'update']);
 
 
+Route::post('blogTag/store', [App\Http\Controllers\BlogTagController::class, 'store']);
+Route::delete('blogTag/{blog_tag}/delete', [App\Http\Controllers\BlogTagController::class, 'delete']);
+Route::get('/blogTag/{blog_tag}/show', [App\Http\Controllers\BlogTagController::class, 'show']);
+Route::put('/blogTag/{blog_tag}/update', [App\Http\Controllers\BlogTagController::class, 'update']);
+
+
 Route::post('/admin/store', [AdminController::class, 'store']);
 
 
