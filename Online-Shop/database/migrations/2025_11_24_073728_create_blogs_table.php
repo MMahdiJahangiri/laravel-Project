@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('author');
             $table->string('text');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
