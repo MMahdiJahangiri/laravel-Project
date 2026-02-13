@@ -8,7 +8,6 @@ use App\Models\blog_like;
 
 class BlogLikeController extends Controller
 {
-    //
     public function store(blog_likeReq $request)
     {
         blog_like::create($request->all());

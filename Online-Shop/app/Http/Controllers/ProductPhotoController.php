@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductPhotoController extends Controller
 {
-    //
     public function store(productPhotoReq $reqProductPhoto)
     {
         $Product_photo = Product_photo::create($reqProductPhoto->except('image_path'));

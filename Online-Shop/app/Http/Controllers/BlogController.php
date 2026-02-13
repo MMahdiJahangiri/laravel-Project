@@ -8,7 +8,6 @@ use App\Models\blog;
 
 class BlogController extends Controller
 {
-    //
     public function store(blogReq $request)
     {
         $blog = blog::create($request->all());
