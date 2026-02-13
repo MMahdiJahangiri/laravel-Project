@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class blog extends Model
 {
+
     use HasFactory, softDeletes;
+
 
     protected $fillable = [
         "titr", "author", "text"
     ];
+
     protected $blog = ['deleted_at'];
+
 }
