@@ -3,6 +3,8 @@
   <component name="PHPUnit">
     <option name="directories">
       <list>
+        <option value="$PROJECT_DIR$/laravel-Project/Online-Shop/tests/Unit" />
+        <option value="$PROJECT_DIR$/laravel-Project/Online-Shop/tests/Feature" />
         <option value="$PROJECT_DIR$/Online-Shop/tests/Unit" />
         <option value="$PROJECT_DIR$/Online-Shop/tests/Feature" />
       </list>

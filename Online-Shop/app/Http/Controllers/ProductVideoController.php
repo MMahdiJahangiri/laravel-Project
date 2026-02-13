@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\productVideoReq;
 use App\Http\Resources\productVideoRes;
 use App\Models\ProductVideo;
-use Illuminate\Http\Request;
 
 class ProductVideoController extends Controller
 {
-    // ایجاد ویدیو محصول
     public function store(productVideoReq $productVideoReq)
     {
         $ProductVideo = ProductVideo::create($productVideoReq->all());
@@ -20,7 +18,6 @@ class ProductVideoController extends Controller
         ], 201); // 201 = Created
     }
 
-    // نمایش یک ویدیو محصول
     public function show(ProductVideo $ProductVideo)
     {
         return response()->json([
@@ -29,7 +26,6 @@ class ProductVideoController extends Controller
         ], 200);
     }
 
-    // بروزرسانی ویدیو محصول
     public function update(ProductVideo $ProductVideo, productVideoReq $productVideoReq)
     {
         $ProductVideo->update($productVideoReq->all());
@@ -41,7 +37,6 @@ class ProductVideoController extends Controller
         ], 200);
     }
 
-    // حذف ویدیو محصول
     public function delete(ProductVideo $ProductVideo)
     {
         $ProductVideo->delete();

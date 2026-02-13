@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // ثبت کاربر جدید (عمومی)
     public function store(userReq $userReq)
     {
         $user = User::create($userReq->all());
@@ -22,10 +21,9 @@ class UserController extends Controller
         ], 201);
     }
 
-    // نمایش اطلاعات کاربر جاری (از توکن)
     public function show(Request $request)
     {
-        $user = $request->user(); // کاربر جاری از توکن
+        $user = $request->user();
 
         return response()->json([
             'message' => 'User retrieved successfully',
@@ -33,11 +31,10 @@ class UserController extends Controller
         ], 200);
     }
 
-    // آپدیت اطلاعات کاربر جاری
     public function update(userReq $userReq)
     {
 
-        $user = $userReq->user(); // کاربر از توکن
+        $user = $userReq->user();
         $user->update($userReq->all());
         $user->refresh();
 
@@ -47,10 +44,9 @@ class UserController extends Controller
         ], 200);
     }
 
-    // حذف کاربر جاری
     public function delete(Request $request)
     {
-        $user = $request->user(); // کاربر از توکن
+        $user = $request->user();
         $user->delete();
 
         return response()->json([

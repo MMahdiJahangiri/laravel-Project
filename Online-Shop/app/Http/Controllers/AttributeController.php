@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\attributeReq;
 use App\Http\Resources\attributeRes;
-use App\Http\Resources\userRes;
 use App\Models\Attribute;
-use Illuminate\Http\Request;
 
 class AttributeController extends Controller
 {
-    // ایجاد Attribute
     public function store(attributeReq $request)
     {
         $attribute = Attribute::create($request->all());
@@ -21,7 +18,6 @@ class AttributeController extends Controller
         ], 201);
     }
 
-    // نمایش یک Attribute
     public function show(Attribute $attribute)
     {
         return response()->json([
@@ -30,7 +26,6 @@ class AttributeController extends Controller
         ], 200);
     }
 
-    // بروزرسانی Attribute
     public function update(Attribute $attribute, attributeReq $request)
     {
         $attribute->update($request->validated());
@@ -41,7 +36,7 @@ class AttributeController extends Controller
         ], 200);
     }
 
-    // حذف Attribute
+    
     public function delete(Attribute $attribute)
     {
         $attribute->delete();
